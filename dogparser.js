@@ -8,7 +8,7 @@ exports.parseDogInfo = function(data) {
         sex: genderHandler(data.sex['\$t']),
         breed: breedHandler(data.breeds.breed),
         state: stateHandler(data.contact.state['\$t']),
-        description: data.description['\$t'],
+        description: descriptionHandler(data.description['\$t']),
         photo: photoHandler(data.media.photos.photo),
         link: 'https://www.petfinder.com/petdetail/' + data.id['\$t']
     };
@@ -28,11 +28,10 @@ function photoHandler(array) {
 function breedHandler(breed) {
     var breedString = '';
 
-    if (breed.isArray == true) {
+    if (Array.isArray(breed) == true) {
         var breedArray = [];
         for (let i = 0; i < breed.length; i++) {
             var thisBreed = breed[i];
-            console.log(`This breed: ${thisBreed}`);
             breedArray.push(thisBreed['\$t']);
         }
         breedString = breedArray.join('/');
@@ -54,4 +53,11 @@ function genderHandler(gender) {
     } else {
         return 'her';
     }
+}
+
+function descriptionHandler(desc) {
+    if (desc == undefined || desc == '') {
+        desc = `There's no description for this dog on Petfinder. We're just going to guess they enjoy chew toys, cuddling and general mischief.`;
+    }
+    return desc;
 }

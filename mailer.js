@@ -13,8 +13,7 @@ exports.sendMail = function(data) {
         var api_key = JSON.parse(contents)['mg_secret'];
         var domain = JSON.parse(contents)['mg_domain'];
 
-        var dailyTemplate = `<!-- Inliner Build Version 4380b7741bb759d6cb997545f3add21ad48f010b -->
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        var dailyTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
       <head>
         <meta name="viewport" content="width=device-width" />
@@ -54,7 +53,8 @@ exports.sendMail = function(data) {
                                                 <!--- column 1 -->
                                                 <table align="left" class="column" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 280px; float: left; min-width: 279px; margin: 0; padding: 0;"><tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 15px;">
                                                             <h5 class="" style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 900; font-size: 17px; margin: 0 0 15px; padding: 0;">Connect with Us:</h5>
-                                                            <p class="" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;"><a href="#" class="soc-btn fb" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #FFF; font-size: 12px; text-decoration: none; font-weight: bold; display: block; text-align: center; background-color: #3B5998 !important; margin: 0 0 10px; padding: 3px 7px;">Facebook</a> <a href="#" class="soc-btn tw" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #FFF; font-size: 12px; text-decoration: none; font-weight: bold; display: block; text-align: center; background-color: #1daced !important; margin: 0 0 10px; padding: 3px 7px;">Twitter</a> <a href="#" class="soc-btn gp" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #FFF; font-size: 12px; text-decoration: none; font-weight: bold; display: block; text-align: center; background-color: #DB4A39 !important; margin: 0 0 10px; padding: 3px 7px;">Google+</a></p>
+                                                            <p class="">The Daily Dog grew out of a programming project Kia Farhang started for his girlfriend. She really liked dogs, and he really liked coding - so why not build a daily email telling her about a dog somewhere in the world?</p>
+                                                        <p>All of the Daily Dog's data comes from Petfinder, a database for animal adoption. If you like the newsletter, pass it on!</p>
                                                         </td>
                                                     </tr></table><!-- /column 1 --><!--- column 2 --><table align="left" class="column" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 280px; float: left; min-width: 279px; margin: 0; padding: 0;"><tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 15px;">
                                                             <h5 class="" style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 900; font-size: 17px; margin: 0 0 15px; padding: 0;">Contact Info:</h5>
@@ -88,7 +88,6 @@ exports.sendMail = function(data) {
 
         var dailyTemplateText = htmlToText.fromString(dailyTemplate);
 
-
         var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 
         var mailData = {
@@ -101,16 +100,11 @@ exports.sendMail = function(data) {
 
         mailgun.messages().send(mailData, function(err, body) {
             if (err) {
-                console.log('Error:', err);
+                console.log('Mailing Error:', err);
             } else {
                 console.log('Success!');
             }
         });
-
-
-
-
-
 
     });
 
