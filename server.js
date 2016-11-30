@@ -8,6 +8,12 @@ const mailer = require('./mailer.js');
 const dogparser = require('./dogparser.js');
 var app = express();
 
+app.use(express.static('dist'));
+
+app.post('/validation', function(req, res){
+    console.log(req.params);
+});
+
 fs.readFile('./keys.json', 'utf8', function(error, contents) {
     var url = JSON.parse(contents)['pf_url'];
 
@@ -28,4 +34,7 @@ fs.readFile('./keys.json', 'utf8', function(error, contents) {
             }
         });
     });
+
+    app.listen(5000);
 });
+    

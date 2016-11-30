@@ -53,8 +53,7 @@ exports.sendMail = function(data) {
                                                 <!--- column 1 -->
                                                 <table align="left" class="column" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 280px; float: left; min-width: 279px; margin: 0; padding: 0;"><tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 15px;">
                                                             <h5 class="" style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 900; font-size: 17px; margin: 0 0 15px; padding: 0;">Connect with Us:</h5>
-                                                            <p class="">The Daily Dog grew out of a programming project Kia Farhang started for his girlfriend. She really liked dogs, and he really liked coding - so why not build a daily email telling her about a dog somewhere in the world?</p>
-                                                        <p>All of the Daily Dog's data comes from Petfinder, a database for animal adoption. If you like the newsletter, pass it on!</p>
+                                                            <p class=""></p>
                                                         </td>
                                                     </tr></table><!-- /column 1 --><!--- column 2 --><table align="left" class="column" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 280px; float: left; min-width: 279px; margin: 0; padding: 0;"><tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 15px;">
                                                             <h5 class="" style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 900; font-size: 17px; margin: 0 0 15px; padding: 0;">Contact Info:</h5>
@@ -92,7 +91,7 @@ exports.sendMail = function(data) {
 
         var mailData = {
             from: from_name,
-            to: 'kfarhang0@gmail.com',
+            to: 'ammillerbernd@gmail.com',
             subject: `Your daily dog: ${data.name}`,
             text: dailyTemplateText,
             html: dailyTemplate

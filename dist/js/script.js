@@ -1,1 +1,1 @@
-"use strict";
+"use strict";function verifyEmail(e){e.preventDefault();var t=document.getElementById("emailField").value,i={email:t},n=new XMLHttpRequest;n.open("POST","/validation"),n.send(i)}document.forms[0].addEventListener("submit",verifyEmail);
