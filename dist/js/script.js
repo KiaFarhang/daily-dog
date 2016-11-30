@@ -1,1 +1,1 @@
-"use strict";function verifyEmail(e){e.preventDefault();var t=document.getElementById("emailField").value,i={email:t},n=new XMLHttpRequest;n.open("POST","/validation"),n.send(i)}document.forms[0].addEventListener("submit",verifyEmail);
+"use strict";function verifyEmail(e){e.preventDefault();var t=document.getElementById("emailField").value,n={address:t},i=new XMLHttpRequest;i.open("POST","/validation"),i.setRequestHeader("Content-Type","application/json"),i.send(JSON.stringify(n))}document.forms[0].addEventListener("submit",verifyEmail);

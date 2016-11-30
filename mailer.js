@@ -1,7 +1,40 @@
 const Mailgun = require('mailgun-js');
+const https = require('https');
 const htmlToText = require('html-to-text');
 const fs = require('fs');
 var exports = module.exports = {};
+
+
+exports.validateAddress = function(address) {
+    fs.readFile('./keys.json', 'utf8', function(err, contents) {
+        var api_key = JSON.parse(contents)['mg_api'];
+        var domain = JSON.parse(contents)['mg_domain'];
+
+        var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
+
+        https.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(response) {
+            response.setEncoding('utf8');
+            let rawData = '';
+            response.on('data', function(chunk) {
+                return rawData += chunk;
+            });
+            response.on('end', function() {
+            try {
+                let parsedData = JSON.parse(rawData);
+                console.log(parsedData['is_valid']);
+            } catch (e) {
+                console.log(`Error: ${e.message}`);
+            }
+            });
+
+        });
+
+        // mailgun.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(err, response){
+        //     console.log(JSON.parse(response));
+        // });
+
+    });
+}
 
 
 
@@ -91,7 +124,7 @@ exports.sendMail = function(data) {
 
         var mailData = {
             from: from_name,
-            to: 'ammillerbernd@gmail.com',
+            to: 'kfarhang0@gmail.com',
             subject: `Your daily dog: ${data.name}`,
             text: dailyTemplateText,
             html: dailyTemplate

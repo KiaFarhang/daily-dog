@@ -9,16 +9,15 @@ function verifyEmail(event){
 	event.preventDefault();
 	let email = document.getElementById('emailField').value;
 
-	// var url = '/validation?&email=${email}';
-
 	var params = {
-		email: email
+		address: email
 	};
 
 	var valRequest = new XMLHttpRequest();
 	valRequest.open('POST', '/validation');
+	valRequest.setRequestHeader('Content-Type', 'application/json');
 
-	valRequest.send(params);
+	valRequest.send(JSON.stringify(params));
 
 
 }
