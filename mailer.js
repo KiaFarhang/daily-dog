@@ -1,5 +1,5 @@
 const Mailgun = require('mailgun-js');
-const https = require('https');
+const request = require('request');
 const htmlToText = require('html-to-text');
 const fs = require('fs');
 var exports = module.exports = {};
@@ -12,27 +12,36 @@ exports.validateAddress = function(address) {
 
         var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 
-        https.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(response) {
-            response.setEncoding('utf8');
-            let rawData = '';
-            response.on('data', function(chunk) {
-                return rawData += chunk;
-            });
-            response.on('end', function() {
-            try {
-                let parsedData = JSON.parse(rawData);
-                console.log(parsedData['is_valid']);
-            } catch (e) {
-                console.log(`Error: ${e.message}`);
+        request.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(error, response, body){
+            if (error){
+                console.log(`Error validating email: ${error}`);
             }
-            });
-
+            else{
+                if(JSON.parse(body)['is_valid'] == true){
+                    console.log('Email valid!');
+                }
+                else{
+                    console.log('Invalid email detected:', JSON.parse(body)['address']);
+                }
+            }
         });
 
-        // mailgun.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(err, response){
-        //     console.log(JSON.parse(response));
-        // });
+        // https.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(response) {
+        //     response.setEncoding('utf8');
+        //     let rawData = '';
+        //     response.on('data', function(chunk) {
+        //         return rawData += chunk;
+        //     });
+        //     response.on('end', function() {
+        //     try {
+        //         let parsedData = JSON.parse(rawData);
+        //         console.log(parsedData['is_valid']);
+        //     } catch (e) {
+        //         console.log(`Error: ${e.message}`);
+        //     }
+        //     });
 
+        // });
     });
 }
 
