@@ -22,6 +22,7 @@ exports.validateAddress = function(address) {
                 }
                 else{
                     console.log('Invalid email detected:', JSON.parse(body)['address']);
+                    return;
                 }
             }
         });
@@ -133,7 +134,7 @@ exports.sendMail = function(data) {
 
         var mailData = {
             from: from_name,
-            to: 'kfarhang0@gmail.com',
+            to: `subscribers@mg.dailydogemail.com`,
             subject: `Your daily dog: ${data.name}`,
             text: dailyTemplateText,
             html: dailyTemplate

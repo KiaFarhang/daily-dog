@@ -22,19 +22,19 @@ app.post('/validation', function(req, res) {
 
 });
 
-// fs.readFile('./keys.json', 'utf8', function(error, contents) {
-//     var url = JSON.parse(contents)['pf_url'];
+fs.readFile('./keys.json', 'utf8', function(error, contents) {
+    var url = JSON.parse(contents)['pf_url'];
 
-//     request.get(url, function(error, response, body) {
+    request.get(url, function(error, response, body) {
 
-//         if (error) {
-//             console.log(`Error accessing Petfinder API: ${error}`);
-//         } else {
-//             let parsedData = JSON.parse(body);
-//             var dog = dogparser.parseDogInfo(parsedData.petfinder.pet);
-//             mailer.sendMail(dog);
-//         }
-//     });
-// });
+        if (error) {
+            console.log(`Error accessing Petfinder API: ${error}`);
+        } else {
+            let parsedData = JSON.parse(body);
+            var dog = dogparser.parseDogInfo(parsedData.petfinder.pet);
+            mailer.sendMail(dog);
+        }
+    });
+});
 
 app.listen(5000);
