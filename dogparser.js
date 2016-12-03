@@ -44,7 +44,13 @@ function breedHandler(breed) {
 }
 
 function stateHandler(state) {
-    return us.lookup(state).name;
+    if (state != undefined) {
+        let stateName = us.lookup(state).name;
+        return `from ${stateName}`;
+    }
+    else{
+        return '';
+    }
 }
 
 function genderHandler(gender) {

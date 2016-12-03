@@ -5,44 +5,41 @@ const fs = require('fs');
 var exports = module.exports = {};
 
 
-exports.validateAddress = function(address) {
+exports.handleSubscriber = function(data) {
     fs.readFile('./keys.json', 'utf8', function(err, contents) {
-        var api_key = JSON.parse(contents)['mg_api'];
+        var api_key = JSON.parse(contents)['mg_secret'];
         var domain = JSON.parse(contents)['mg_domain'];
 
         var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 
-        request.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(error, response, body){
-            if (error){
-                console.log(`Error validating email: ${error}`);
-            }
-            else{
-                if(JSON.parse(body)['is_valid'] == true){
-                    console.log('Email valid!');
-                }
-                else{
-                    console.log('Invalid email detected:', JSON.parse(body)['address']);
-                    return;
-                }
-            }
+        let subscriber = {
+            address: data.address,
+            name: data.name,
+            subscribed: true
+        };
+
+        request.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${subscriber.address}`, function(error, response, body) {
+            // if (error) {
+            //     console.log(`Error validating email: ${error}`);
+            //     return;
+            // }
+
+            console.log(body);
+            // if (body['is_valid'] == true) {
+            //     let list = mailgun.lists('subscribers@mg.dailydogemail.com');
+            //     list.members().create(subscriber, function(error, data) {
+            //         if (error) {
+            //             console.log(error);
+            //             return;
+            //         }
+            //         console.log(`Added subscriber ${subscriber.name} (${subsriber.address}) to the mailing list.`);
+            //     });
+            // } else {
+            //     console.log('Invalid email detected');
+            //     return;
+            // }
+
         });
-
-        // https.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${address}`, function(response) {
-        //     response.setEncoding('utf8');
-        //     let rawData = '';
-        //     response.on('data', function(chunk) {
-        //         return rawData += chunk;
-        //     });
-        //     response.on('end', function() {
-        //     try {
-        //         let parsedData = JSON.parse(rawData);
-        //         console.log(parsedData['is_valid']);
-        //     } catch (e) {
-        //         console.log(`Error: ${e.message}`);
-        //     }
-        //     });
-
-        // });
     });
 }
 
@@ -82,7 +79,7 @@ exports.sendMail = function(data) {
                     <div class="content" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 600px; display: block; margin: 0 auto; padding: 15px;">
                         <table style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%; margin: 0; padding: 0;"><tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
                                     <h3 style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 500; font-size: 27px; margin: 0 0 15px; padding: 0;">Meet ${data.name}.</h3>
-                                    <p class="lead" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 17px; line-height: 1.6; margin: 0 0 10px; padding: 0;">${data.name} is a ${data.breed} from ${data.state}. </p>
+                                    <p class="lead" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 17px; line-height: 1.6; margin: 0 0 10px; padding: 0;">${data.name} is a ${data.breed} ${data.state}. </p>
                                     <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;"><img src=${data.photo} style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%; margin: 0; padding: 0;" /></p>
                                     <!-- Callout Panel -->
                                     <p class="callout" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; background: #ECF8FF; margin: 0 0 15px; padding: 15px;">
@@ -133,7 +130,7 @@ exports.sendMail = function(data) {
         var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 
         var mailData = {
-            from: from_name,
+            from: `subscribers@mg.dailydogemail.com`,
             to: `subscribers@mg.dailydogemail.com`,
             subject: `Your daily dog: ${data.name}`,
             text: dailyTemplateText,
@@ -144,7 +141,7 @@ exports.sendMail = function(data) {
             if (err) {
                 console.log('Mailing Error:', err);
             } else {
-                console.log('Success!');
+                console.log(`Email sent succesfully`);
             }
         });
 
