@@ -1,13 +1,13 @@
 {
-  "name": "name_here",
+  "name": "daily_dog_email",
   "version": "0.0.1",
-  "description": "description here",
+  "description": "A daily email newsletter that pulls from Petfinder's API.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "keywords": [],
-  "repository": "REPOSITORY HERE",
+  "repository": "https://github.com/KiaFarhang/daily-dog",
   "author": "Kia Farhang <kfarhang0@gmail.com>",
   "license": "ISC",
   "devDependencies": {
