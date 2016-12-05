@@ -4,7 +4,7 @@
   "description": "A daily email newsletter that pulls from Petfinder's API.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "gulp"
   },
   "keywords": [],
   "repository": "https://github.com/KiaFarhang/daily-dog",
