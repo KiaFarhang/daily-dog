@@ -7,10 +7,11 @@ var exports = module.exports = {};
 
 exports.handleSubscriber = function(data) {
     fs.readFile('./keys.json', 'utf8', function(err, contents) {
-        var api_key = JSON.parse(contents)['mg_secret'];
+        var api_key = JSON.parse(contents)['mg_api'];
+        var api_secret = JSON.parse(contents)['mg_secret'];
         var domain = JSON.parse(contents)['mg_domain'];
 
-        var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
+        var mailgun = new Mailgun({ apiKey: api_secret, domain: domain });
 
         let subscriber = {
             address: data.address,
@@ -19,25 +20,22 @@ exports.handleSubscriber = function(data) {
         };
 
         request.get(`https://api.mailgun.net/v3/address/validate?api_key=${api_key}&address=${subscriber.address}`, function(error, response, body) {
-            // if (error) {
-            //     console.log(`Error validating email: ${error}`);
-            //     return;
-            // }
+            if (error) {
+                console.log(error);
+            }
+            let valData = JSON.parse(body);
+            if (valData['is_valid'] != true) {
+                return;
+            }
+            let list = mailgun.lists('subscribers@mg.dailydogemail.com');
+            list.members().create(subscriber, function(error, data) {
+                if (error) {
+                    console.log(error);
+                }
+                console.log(data);
+            });
 
-            console.log(body);
-            // if (body['is_valid'] == true) {
-            //     let list = mailgun.lists('subscribers@mg.dailydogemail.com');
-            //     list.members().create(subscriber, function(error, data) {
-            //         if (error) {
-            //             console.log(error);
-            //             return;
-            //         }
-            //         console.log(`Added subscriber ${subscriber.name} (${subsriber.address}) to the mailing list.`);
-            //     });
-            // } else {
-            //     console.log('Invalid email detected');
-            //     return;
-            // }
+
 
         });
     });
@@ -130,7 +128,7 @@ exports.sendMail = function(data) {
         var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 
         var mailData = {
-            from: `subscribers@mg.dailydogemail.com`,
+            from: `Daily Dog Email <subscribers@mg.dailydogemail.com>`,
             to: `subscribers@mg.dailydogemail.com`,
             subject: `Your daily dog: ${data.name}`,
             text: dailyTemplateText,
@@ -146,7 +144,5 @@ exports.sendMail = function(data) {
         });
 
     });
-
-
 
 };

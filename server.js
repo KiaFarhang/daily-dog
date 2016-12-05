@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const fs = require('fs');
-const Mailgun = require('mailgun-js');
 
 const mailer = require('./mailer.js');
 const dogparser = require('./dogparser.js');

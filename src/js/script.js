@@ -20,4 +20,6 @@ function sendSubscriber(event){
 	request.setRequestHeader('Content-Type', 'application/json');
 
 	request.send(JSON.stringify(subscriber));
+
+	document.forms[0].removeEventListener('submit', sendSubscriber);
 }
