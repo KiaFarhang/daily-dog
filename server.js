@@ -16,7 +16,17 @@ var cronJob = require('cron').CronJob;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static('dist'));
+app.use(express.static(__dirname + '/dist'));
+
+
+
+let options = {
+    root: __dirname + '/dist/'
+};
+
+app.get('/', function(req, res){
+    res.sendFile('index.html', options);
+});
 
 app.post('/validation', function(req, res) {
     subscription.handleSubscriber(req.body);
