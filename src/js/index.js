@@ -27,7 +27,7 @@ function sendSubscriber(event) {
     let subscriber = {
         address: email,
         name: name
-    }; 
+    };
 
     var request = new XMLHttpRequest();
     request.open('POST', '/validation');

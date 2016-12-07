@@ -1,1 +1,23 @@
 @import 'reset';
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+
+div.formContainer {
+    text-align: center;
+    input {
+        display: block;
+        margin: 0 auto;
+        padding: .4rem;
+        &.button {
+            border-radius: 5px;
+            margin-top: 1rem;
+            padding: .75rem;
+        }
+    }
+    p.nameStatus,
+    p.emailStatus {
+        color: red;
+    }
+}

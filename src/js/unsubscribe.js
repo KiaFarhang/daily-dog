@@ -15,8 +15,14 @@ function unsubscribe(event) {
     var request = new XMLHttpRequest();
     request.open('POST', '/unsubscribe');
     request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify(email));
 
+    var subscriber = {
+    	address : email
+    };
+
+    request.send(JSON.stringify(subscriber));
+
+    document.forms[0].removeEventListener('submit', unsubscribe);
 }
 
 
@@ -24,3 +30,4 @@ function checkEmail(email) {
     var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
+ 

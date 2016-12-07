@@ -1,2 +1,2 @@
-*{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}body{line-height:1}
+*{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}body{line-height:1;width:80%;margin:0 auto}div.formContainer{text-align:center}div.formContainer input{display:block;margin:0 auto;padding:.4rem}div.formContainer input.button{border-radius:5px;margin-top:1rem;padding:.75rem}div.formContainer p.emailStatus,div.formContainer p.nameStatus{color:red}
 /*# sourceMappingURL=style.css.map */
