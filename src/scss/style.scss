@@ -11,8 +11,9 @@ div.formContainer {
         margin: 0 auto;
         padding: .4rem;
         &.button { 
-            padding: .75rem;
             border-radius: 5px;
+        	margin-top: 1rem;
+            padding: .75rem;
         }
     }
     p.nameStatus, p.emailStatus{
