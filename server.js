@@ -22,7 +22,6 @@ let options = {
     root: __dirname + '/dist/'
 };
 
-
 const url = process.env.PF_URL;
 
 app.get('/', function(req, res){
