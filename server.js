@@ -37,7 +37,7 @@ app.post('/unsubscribe', function(req, res) {
     subscription.unsubscribe(req.body);
 });
 
-var job = new cronJob('00 15 8 * * *', function() {
+var job = new cronJob('00 40 8 * * *', function() {
     request.get(url, function(error, response, body) {
         if (error) {
             console.log(`Error accessing Petfinder API: ${error}`);
