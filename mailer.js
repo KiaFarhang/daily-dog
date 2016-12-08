@@ -10,13 +10,12 @@ const mg_domain = process.env.MG_DOMAIN;
 
 exports.sendDailyMail = function(data) {
 
-    fs.readFile('./keys.json', 'utf8', function(err, contents) {
-        var from_name = 'kfarhang0@gmail.com';
-        var api_key = JSON.parse(contents)['mg_secret'];
-        var domain = JSON.parse(contents)['mg_domain'];
+
+    var from_name = 'kfarhang0@gmail.com';
 
 
-        var dailyTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    var dailyTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
       <head>
         <meta name="viewport" content="width=device-width" />
@@ -88,25 +87,25 @@ exports.sendDailyMail = function(data) {
             </tr></table><!-- /FOOTER --></body>
     </html>`;
 
-        var dailyTemplateText = htmlToText.fromString(dailyTemplate);
+    var dailyTemplateText = htmlToText.fromString(dailyTemplate);
 
-        var mailgun = new Mailgun({ apiKey: mg_secret, domain: mg_domain });
+    var mailgun = new Mailgun({ apiKey: mg_secret, domain: mg_domain });
 
-        var mailData = {
-            from: `Daily Dog Email <subscribers@mg.dailydogemail.com>`,
-            to: `subscribers@mg.dailydogemail.com`,
-            subject: `Your daily dog: ${data.name}`,
-            text: dailyTemplateText,
-            html: dailyTemplate
-        };
+    var mailData = {
+        from: `Daily Dog Email <subscribers@mg.dailydogemail.com>`,
+        to: `subscribers@mg.dailydogemail.com`,
+        subject: `Your daily dog: ${data.name}`,
+        text: dailyTemplateText,
+        html: dailyTemplate
+    };
 
-        mailgun.messages().send(mailData, function(err, body) {
-            if (err) {
-                console.log('Mailing Error:', err);
-            } else {
-                console.log(`Email sent succesfully`);
-            }
-        });
+    mailgun.messages().send(mailData, function(err, body) {
+        if (err) {
+            console.log('Mailing Error:', err);
+        } else {
+            console.log(`Email sent succesfully`);
+        }
     });
+
 
 };

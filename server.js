@@ -19,17 +19,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let options = {
-    root: __dirname + '/dist/'
+    root: __dirname
 };
+
 
 
 const url = process.env.PF_URL;
 
-// app.get('/', function(req, res){
-//     res.sendFile('index.html', options);
-// });
-
 app.use(express.static('dist'));
+
+app.get('/', function(req, res){
+    res.sendFile('dist/index.html', options);
+});
 
 app.post('/validation', function(req, res) {
     subscription.handleSubscriber(req.body);
@@ -39,7 +40,7 @@ app.post('/unsubscribe', function(req, res) {
     subscription.unsubscribe(req.body);
 });
 
-var job = new cronJob('00 15 8 * * *', function() {
+var job = new cronJob('00 05 9 * * *', function() {
     request.get(url, function(error, response, body) {
         if (error) {
             console.log(`Error accessing Petfinder API: ${error}`);
