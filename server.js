@@ -25,11 +25,9 @@ let options = {
 
 const url = process.env.PF_URL;
 
-// app.get('/', function(req, res){
-//     res.sendFile('index.html', options);
-// });
-
-app.use(express.static('dist'));
+app.get('/', function(req, res){
+    res.sendFile('index.html', options);
+});
 
 app.post('/validation', function(req, res) {
     subscription.handleSubscriber(req.body);
