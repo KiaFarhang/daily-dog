@@ -1,23 +1,60 @@
 @import 'reset';
 body {
-    width: 80%;
+    font-size: 17px;
+    font-style: sans-serif;
+    line-height: 1.5;
     margin: 0 auto;
+    width: 90%;
 }
 
 div.formContainer {
-    text-align: center;
+    // text-align: center;
+    margin: 1rem 0;
     input {
         display: block;
-        margin: 0 auto;
+        // margin: 0 auto;
         padding: .4rem;
-        &.button {
-            border-radius: 5px;
-            margin-top: 1rem;
-            padding: .75rem;
-        }
+    }
+    .button {
+        border-radius: 5px;
+        margin-top: 1rem;
+        padding: .75rem;
     }
     p.nameStatus,
     p.emailStatus {
         color: red;
+    }
+    div.buttonBox {
+        display: flex;
+        flex-flow: row no-wrap;
+        justify-content: space-between;
+        input {
+            display: inline-block;
+        }
+        input,
+        button {
+            flex-basis: 45%;
+        }
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+span {
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) {
+    div.topContainer {
+        align-items: center;
+        display: flex;
+        flex-flow: row no-wrap;
+        justify-content: space-between;
+        div {
+            flex-basis: 45%;
+        }
     }
 }

@@ -9,21 +9,34 @@
 </head>
 
 <body>
-    <h1>Daily Dog Email</h1>
-    <div class="formContainer">
-        <h3>Get an adoptable dog in your inbox daily.</h3>
-        <form action="">
-            <label for="name">Name:
-                <input type="text" id="nameField">
-                <p class="nameStatus"></p>
-            </label>
-            <label for="email">Email:
-                <input type="text" id="emailField">
-                <p class="emailStatus"></p>
-            </label>
-            <input type="submit" value="Sign Up" class="button">
-        </form>
+    <div class="topContainer">
+        <div class="dogContainer">
+            <p>This is <span class="dogName">Flynn</span>.</p>
+            <img class="dogImage" src="img/flynn.jpg" alt="">
+            <p><span class="dogGender">He</span>'s a <span class="dogBreed">terrier/chihuahua mix</span> from <span class="dogLocation">Minnesota.</span></p>
+            <p><span class="dogGender">He</span>'s <span class="dogAge">13 weeks</span> old.</p>
+            <p><span class="dogGender">He</span> loves <span class="dogLikes">snuggling</span>. </p>
+        </div>
+        <div class="formContainer">
+            <h3>Get an adoptable dog in your inbox daily.</h3>
+            <form action="">
+                <label for="name">
+                    <input type="text" id="nameField" placeholder="Name">
+                    <p class="nameStatus"></p>
+                </label>
+                <label for="email">
+                    <input type="text" id="emailField" placeholder="Email">
+                    <p class="emailStatus"></p>
+                </label>
+                <div class="buttonBox">
+                    <input type="submit" value="Sign Up" class="button">
+                    <button class="button rotate">New Dog</button>
+                </div>
+            </form>
+        </div>
     </div>
+    <h2>A Dog Email Every Day</h2>
+    <p>With every Daily Dog Email, you'll learn a little bit about the dog - what she likes, where he's from, what he looks like. All the info comes from Petfinder, the world's largest animal adoption database.</p>
     <script src="js/index.js"></script>
 </body>
 
