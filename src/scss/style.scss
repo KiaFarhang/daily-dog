@@ -1,18 +1,19 @@
 @import 'reset';
 body {
     font-size: 17px;
-    font-style: sans-serif;
+    font-family: 'Biryani', serif;
     line-height: 1.5;
     margin: 0 auto;
     width: 90%;
 }
 
 div.formContainer {
-    // text-align: center;
+    background: gray;
     margin: 1rem 0;
+    padding: 1rem;
     input {
         display: block;
-        // margin: 0 auto;
+        margin-top: .5rem;
         padding: .4rem;
     }
     .button {
@@ -42,7 +43,7 @@ img {
     max-width: 100%;
     height: auto;
 }
-
+ 
 span {
     text-decoration: underline;
 }

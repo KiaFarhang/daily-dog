@@ -21,10 +21,14 @@ function Dog(name, img, gender, age, breed, location, likes, order) {
 
 let currentDog = 0;
 
-var flynn = new Dog('Flynn', 'img/flynn.jpg', 'He', "13 weeks", "terrier/chihuahua mix", 'Minnesota', 'people (and snuggling)', 0);
+var flynn = new Dog('Flynn', 'img/flynn.jpg', 'He', "13 weeks", "Terrier/Chihuahua mix", 'Minnesota', 'people (and snuggling)', 0);
 var oreo = new Dog('Professor Oreo', 'img/oreo.jpg', 'He', '3 years', 'Jack Russel Terrier', "Tennessee", 'playing with friends', 1);
+var anubis = new Dog('Anubis', 'img/anubis.jpg', 'He', '7 years', 'German Shepherd', 'Rhode Island', 'everyone', 2);
+var cissy = new Dog('Cissy', 'img/cissy.jpg', 'She', '9 months', 'Boxer', 'Florida', 'exercise', 3);
+var regina = new Dog('Regina', 'img/regina.jpg', 'She', '5 months', 'Blue Heeler/Terrier mix', 'Mississippi', 'cats', 4);
+var sassy = new Dog('Sassy', 'img/sassy.jpg', 'She', '8 years', 'Retriever', 'Minnesota', 'dog parks', 5);
 
-let dogArray = [flynn, oreo];
+let dogArray = [flynn, oreo, anubis, cissy, regina, sassy];
 
 function rotateDog() {
 
@@ -39,8 +43,6 @@ function rotateDog() {
     postDog(newDog);
 
     
-
-
     function postDog(dog) {
         let name = document.getElementsByClassName('dogName')[0];
         name.innerText = dog.name;
@@ -58,7 +60,7 @@ function rotateDog() {
         let breed = document.getElementsByClassName('dogBreed')[0];
         breed.innerText = dog.breed;
 
-        let location = document.getElementsByClassName('location')[0];
+        let location = document.getElementsByClassName('dogLocation')[0];
         location.innerText = dog.location;
 
         let likes = document.getElementsByClassName('dogLikes')[0];
