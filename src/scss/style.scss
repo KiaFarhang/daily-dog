@@ -37,6 +37,7 @@ div.mainContainer {
 @media screen and (min-width: 768px) {
     div.mainContainer {
         background: url(../img/dog-tablet.jpg) no-repeat center center;
+        min-height: 55rem;
         div.formContainer {
             padding-top: 7.5rem;
             div.inputContainer {
@@ -55,11 +56,21 @@ div.mainContainer {
 @media screen and (min-width: 1024px){
     div.mainContainer{
         background: url(../img/dog-desktop.jpg) no-repeat center center;
+        min-height: 60rem;
     }
 }
 
-@media screen and (min-width: 1440px){
+@media screen and (min-width: 1400px){
     div.mainContainer{
         background: url(../img/dog-wide.jpg) no-repeat center center;
+        min-height: 70rem;
+        div.formContainer{
+        	width: 50%; 
+        	div.inputContainer{
+        		input{
+        			width: 20em;
+        		}
+        	}
+        }
     }
 }

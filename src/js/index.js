@@ -38,12 +38,17 @@ function sendSubscriber(event) {
     request.open('POST', '/validation');
     request.setRequestHeader('Content-Type', 'application/json');
 
-    request.send(JSON.stringify(subscriber));
+    request.send(JSON.stringify(subscriber)); 
 
     let h3 = document.getElementsByTagName('h3')[0];
     h3.innerText = 'Thanks! Your first email is on the way.';
 
-    document.forms[0].removeEventListener('submit', sendSubscriber);
+    setTimeout(function(){
+    	document.forms[0].reset();
+    	h3.innerText = 'Get an adoptable dog in your inbox daily.';
+    }, 3000);
+
+    // document.forms[0].removeEventListener('submit', sendSubscriber);
 
 }
 
