@@ -24,7 +24,10 @@ let options = {
 
 
 
-const url = process.env.PF_URL;
+let requestOptions = {
+  url: process.env.PF_URL,
+  encoding: 'utf8'
+}; 
 
 app.use(express.static('dist'));
 
@@ -40,17 +43,17 @@ app.post('/unsubscribe', function(req, res) {
     subscription.unsubscribe(req.body);
 });
 
-var job = new cronJob('00 05 9 * * *', function() {
-    request.get(url, function(error, response, body) {
-        if (error) {
-            console.log(`Error accessing Petfinder API: ${error}`);
-            return;
-        }
-        let parsedData = JSON.parse(body);
-        var dog = dogparser.parseDogInfo(parsedData.petfinder.pet);
-        mailer.sendDailyMail(dog);
-    });
-}, function() {}, true, 'America/Los_Angeles');
+// // var job = new cronJob('00 05 9 * * *', function() {
+//     request.get(requestOptions, function(error, response, body) {
+//         if (error) {
+//             console.log(`Error accessing Petfinder API: ${error}`);
+//             return;
+//         }
+//         let parsedData = JSON.parse(body);
+//         var dog = dogparser.parseDogInfo(parsedData.petfinder.pet);
+//         mailer.sendDailyMail(dog);
+//     });
+// // }, function() {}, true, 'America/Los_Angeles');
 
 
 

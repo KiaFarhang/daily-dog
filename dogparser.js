@@ -21,8 +21,8 @@ function photoHandler(array) {
         if (array[i]['\@size'] === 'x') {
             return (array[i]['\$t']);
         }
-
     }
+    return 'http://kiafarhang.com/img/no_photo.jpg';
 }
 
 function breedHandler(breed) {
@@ -47,8 +47,7 @@ function stateHandler(state) {
     if (state != undefined) {
         let stateName = us.lookup(state).name;
         return `from ${stateName}`;
-    }
-    else{
+    } else {
         return '';
     }
 }

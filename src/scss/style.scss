@@ -1,79 +1,65 @@
+$blue: #5ACFBB;
 @import 'reset';
 body {
-    font-size: 17px;
-    font-family: 'Reem Kufi', serif;
-    line-height: 1.5;
-    margin: 0 auto;
-    width: 90%;
-}
-header{
-    font-size: 270%;
-    font-weight: 600;
-    text-align: center;
+    font-family: Arial;
+    line-height: 1.3;
 }
 
-div.formContainer {
-    background: gray;
-    margin: 1rem 0;
-    padding: 1rem;
-    input {
-        display: block;
-        margin-top: .5rem;
-        padding: .4rem;
-    }
-    .button {
-        border-radius: 5px;
-        margin-top: 1rem;
-        padding: .75rem;
-    }
-    p.nameStatus,
-    p.emailStatus {
-        color: red;
-    }
-    div.buttonBox {
-        display: flex;
-        flex-flow: row no-wrap;
-        justify-content: space-between;
+div.mainContainer {
+    background: url(../img/dog-mobile.jpg) no-repeat center center;
+    background-size: cover;
+    color: white;
+    min-height: 50rem;
+    div.formContainer {
+        margin: 0 auto;
+        padding-top: 3.5rem;
+        width: 70%;
         input {
-            display: inline-block;
+            border-radius: 15px;
+            margin-top: .5rem;
+            padding: .75rem;
+            &.button {
+                background: $blue;
+            }
         }
-        input,
-        button {
-            flex-basis: 45%;
+        h3 {
+            font-size: 150%;
         }
-    }
-}
-
-p.nameSentence {
-    font-size: 140%;
-}
-
-div.aboutContainer{
-    p{
-        font-size: 90%;
-    }
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-span {
-    text-decoration: underline;
-    &.dogGender {
-        text-decoration: none;
+        p.nameStatus,
+        p.emailStatus {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
     }
 }
 
 @media screen and (min-width: 768px) {
-    div.topContainer {
-        align-items: center;
-        display: flex;
-        flex-flow: row no-wrap;
-        justify-content: space-between;
-        div {
-            flex-basis: 45%;
+    div.mainContainer {
+        background: url(../img/dog-tablet.jpg) no-repeat center center;
+        div.formContainer {
+            padding-top: 7.5rem;
+            div.inputContainer {
+                display: flex;
+                flex-flow: row no-wrap;
+                justify-content: space-between;
+                input {
+                    flex-basis: 50%;
+                    width: 15em;
+                }
+            }
         }
+    }
+}
+
+@media screen and (min-width: 1024px){
+    div.mainContainer{
+        background: url(../img/dog-desktop.jpg) no-repeat center center;
+    }
+}
+
+@media screen and (min-width: 1440px){
+    div.mainContainer{
+        background: url(../img/dog-wide.jpg) no-repeat center center;
     }
 }

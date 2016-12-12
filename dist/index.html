@@ -4,44 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Reem+Kufi" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Reem+Kufi" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/style.css">
     <title>Daily Dog Email</title>
 </head>
 
 <body>
-    <header>
-        <p>Daily Dog</p>
-    </header>
-    <div class="topContainer">
-        <div class="dogContainer">
-            <img class="dogImage" src="img/flynn.jpg" alt="">
-            <p class="nameSentence">This is <span class="dogName">Flynn</span>.</p>
-            <p><span class="dogGender">He</span>'s a <span class="dogBreed">terrier/chihuahua mix</span> from <span class="dogLocation">Minnesota.</span></p>
-            <p><span class="dogGender">He</span>'s <span class="dogAge">13 weeks</span> old.</p>
-            <p><span class="dogGender">He</span> loves <span class="dogLikes">snuggling</span>. </p>
-        </div>
+    <div class="mainContainer">
         <div class="formContainer">
             <h3>Get an adoptable dog in your inbox daily.</h3>
             <form action="">
-                <label for="name">
-                    <input type="text" id="nameField" placeholder="Name">
-                    <p class="nameStatus"></p>
-                </label>
-                <label for="email">
-                    <input type="text" id="emailField" placeholder="Email">
-                    <p class="emailStatus"></p>
-                </label>
+                <div class="inputContainer">
+                    <label for="name">
+                        <input type="text" id="nameField" placeholder="Name">
+                        <p class="nameStatus"></p>
+                    </label>
+                    <label for="email">
+                        <input type="text" id="emailField" placeholder="Email">
+                        <p class="emailStatus"></p>
+                    </label>
+                </div>
                 <div class="buttonBox">
                     <input type="submit" value="Sign Up" class="button">
-                    <button class="button rotate">New Dog</button>
                 </div>
             </form>
         </div>
-    </div>
-    <div class="aboutContainer">
-        <h2>A Dog Email Every Day</h2>
-        <p>With every Daily Dog Email, you'll learn a little bit about the dog - what she likes, where he's from, what he looks like. All the info comes from Petfinder, the world's largest animal adoption database.</p>
     </div>
     <script src="js/index.js"></script>
 </body>

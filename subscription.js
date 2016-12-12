@@ -5,6 +5,9 @@ require('dotenv').config();
 const fs = require('fs');
 var exports = module.exports = {};
 
+const mailer = require('./mailer.js');
+const dogparser = require('./dogparser.js');
+
 var api_key = process.env.MG_PUB;
 var api_secret = process.env.MG_SEC;
 var domain = process.env.MG_DOMAIN;
@@ -35,24 +38,21 @@ exports.handleSubscriber = function(data) {
             }
             console.log(data);
         });
+
+        let requestOptions = {
+            url: process.env.PF_URL,
+            encoding: 'utf8'
+        };
+
+        request.get(requestOptions, function(error, response, body) {
+            if (error) {
+                console.log(`Error accessing Petfinder API: ${error}`);
+                return;
+            }
+            let parsedData = JSON.parse(body);
+            var dog = dogparser.parseDogInfo(parsedData.petfinder.pet);
+            mailer.sendWelcomeMail(dog, subscriber.address);
+        });
     });
 
-}
-
-exports.unsubscribe = function(data) {
-    var options = {
-        url: `https://api.mailgun.net/v3/mg.dailydogemail.com/unsubscribes?address=${data.address}&tag=*`,
-        auth: {
-            user: 'api',
-            pass: api_secret
-        }
-    };
-
-    request.post(options, function(error, response, body) {
-        if (error) {
-            console.log(error);
-            return;
-        }
-        console.log(body);
-    });
 }
