@@ -188,7 +188,7 @@ exports.sendWelcomeMail = function(data, address){
                     <table style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; width: 100%; margin: 0; padding: 0;">
                         <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
                             <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
-                                <h3 style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 500; font-size: 27px; margin: 0 0 15px; padding: 0;">Welcome to the Daily Dog Email! Check your inbox every morning for a new one. In the meantime...</h3>
+                                <h3 style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 500; font-size: 27px; margin: 0 0 15px; padding: 0;">Meet ${data.name}.</h3>
                                 <p class="lead" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 17px; line-height: 1.6; margin: 0 0 10px; padding: 0;">${data.name} is a ${data.breed} ${data.state}. </p>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;"><img src=${data.photo} style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; max-width: 100%; margin: 0; padding: 0;" /></p>
                                 <!-- Callout Panel -->
@@ -210,7 +210,7 @@ exports.sendWelcomeMail = function(data, address){
                                                 <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
                                                     <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; margin: 0; padding: 15px;">
                                                         <h5 class="" style="font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; line-height: 1.1; color: #000; font-weight: 900; font-size: 17px; margin: 0 0 15px; padding: 0;">About:</h5>
-                                                        <p class="">The Daily Dog Email is a project by <a href="http://kiafarhang.com" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Kia Farhang.</a> All data comes from <a href="https://www.petfinder.com/" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Petfinder,</a> home of more than 250,000 adoptable pets. Please support them if you like the email. <a href="%unsubscribe_url%" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Click here</a> to unsubscribe.</p>
+                                                        <p class="">The Daily Dog Email is a project by <a href="http://kiafarhang.com" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Kia Farhang.</a> All data comes from <a href="https://www.petfinder.com/" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Petfinder,</a> home of more than 250,000 adoptable pets. Please support them if you like the email. <a href="http://www.dailydogemail.com" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Click here</a> if you'd like to subscribe to Daily Dog Emails.<a href="%unsubscribe_url%" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Click here to unsubscribe.</a> </p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -266,8 +266,7 @@ exports.sendWelcomeMail = function(data, address){
     <!-- /FOOTER -->
 </body>
 
-</html>
-`;
+</html>`;
     let welcomeTemplateText = htmlToText.fromString(welcomeTemplate);
 
     var mailgun = new Mailgun({apiKey: mg_secret, domain: mg_domain });
